@@ -33,21 +33,13 @@
 </head>
 
 <body>
-    {{-- <div id="preloader">
-        <div class="sk-three-bounce">
-            <div class="sk-child sk-bounce1"></div>
-            <div class="sk-child sk-bounce2"></div>
-            <div class="sk-child sk-bounce3"></div>
-        </div>
-    </div> --}}
-
     <div id="main-wrapper">
 
         <div class="nav-header">
             <a href="index.html" class="brand-logo">
-                <img class="logo-abbr" src="../images/logo.png" alt="">
-                <img class="logo-compact" src="../images/logo-text.png" alt="">
-                <img class="brand-title" src="../images/logo-text.png" alt="">
+                <img class="logo-abbr" src="assets/images/logo.png" alt="">
+                <img class="logo-compact" src="assets/images/logo-text.png" alt="">
+                <img class="brand-title" src="assets/images/logo-text.png" alt="">
             </a>
 
             <div class="nav-control">
@@ -68,7 +60,7 @@
                         <ul class="navbar-nav header-right">
 
                             <li class="nav-item dropdown header-profile">
-                                <a class="nav-link" href="../php/logout">
+                                <a class="nav-link" href="assets/php/logout">
                                     <i class="fas fa-sign-out fs-5"></i>
                                 </a>
                             </li>
@@ -175,6 +167,19 @@
 
 
     {{ $slot }}
+
+
+
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.12.1/i18n/fr-FR.json"
+                },
+                "dom": '<"d-flex justify-content-between align-items-center mb-3"<"d-flex align-items-center"l><"d-flex align-items-center"f>>t<"d-flex justify-content-between align-items-center"ip>'
+            });
+        });
+    </script>
 
     <!-- jquery vendor -->
     <script src="assets/js/lib/jquery.min.js"></script>
