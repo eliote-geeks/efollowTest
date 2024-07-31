@@ -23,7 +23,7 @@ use App\Http\Controllers\SpecialiteController;
 */
 
 Route::get('/', function () {
-    return view('level.level-list');
+    return redirect()->route('login');
 });
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
