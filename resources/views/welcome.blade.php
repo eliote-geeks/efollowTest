@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html>
 <head>
     <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/core@5.10.1/main.min.css' rel='stylesheet' />
@@ -47,7 +47,7 @@
 
     <div id='calendar'></div>
 
-    {{-- <script>
+     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
 
@@ -64,6 +64,13 @@
 
             calendar.render();
         });
-    </script> --}}
+    </script>
+
 </body>
 </html>
+--}}
+
+<base href="/">
+<x-layouts>
+    <p>bonjour tout le monde</p>
+</x-layouts>
