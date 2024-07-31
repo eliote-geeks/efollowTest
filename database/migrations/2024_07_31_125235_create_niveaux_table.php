@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('niveaux', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('specialite_id')->references('id')->on('specialites')->onDelete('cascade');
+            $table->string('name');
             $table->timestamps();
         });
     }

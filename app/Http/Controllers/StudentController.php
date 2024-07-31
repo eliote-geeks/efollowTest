@@ -39,6 +39,7 @@ class StudentController extends Controller
             $request->validate([
                 'firstName' => 'required',
                 'lastName' => 'required',
+                'niveau' => 'required|integer',
                 'birth_date' => 'required|date',
             ]);
 
@@ -55,6 +56,7 @@ class StudentController extends Controller
             $student->firstName = $request->firstName;
             $student->lastName = $request->lastName;
             $student->birth_date = $request->birth_date;
+            $student->niveau_id = $request->niveau;
             $student->save();
             return redirect()->back()->with('message', 'Etudiant Ajouté !!');
         } catch (\Exception $e) {
