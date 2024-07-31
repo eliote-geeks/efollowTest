@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Niveau;
+use App\Models\Program;
 use App\Models\Session;
 use App\Models\Teacher;
 use Illuminate\Database\Eloquent\Model;
@@ -25,5 +26,10 @@ class Course extends Model
     public function teacher()
     {
         return $this->hasMany(Teacher::class);
+    }
+
+    public function program()
+    {
+        return $this->hasMany(Program::class);
     }
 }
