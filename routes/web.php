@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\NiveauController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SmartCardController;
@@ -40,3 +41,4 @@ Route::resource('niveau', NiveauController::class);
 Route::resource('etudiant', StudentController::class);
 Route::resource('session',SessionController::class);
 Route::resource('enseignant', TeacherController::class);
+Route::resource('cours',CourseController::class);

@@ -12,7 +12,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $courses = Course::all();
     }
 
     /**
@@ -28,7 +28,35 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $request->validate(
+                [
+                    'niveau' => 'required',
+                    'teacher' => 'required',
+                    'session' => 'required',
+                    'slug' => 'required',
+                    'name' => 'required',
+                ],
+                [
+                    'niveau.required' => 'Le champ niveau ne peut etre vide',
+                    'teacher.required' => 'Le champ enseignant ne peut etre vide',
+                    'session.required' => 'Le champ session ne peut etre vide',
+                    'slug.required' => 'Le champ code cours ne peut etre vide',
+                    'name.required' => 'Le champ nom de cours ne peut etre vide',
+                ],
+            );
+
+            $course = new Course();
+            $course->niveau_id = $request->niveau;
+            $course->teacher_id = $request->teacher;
+            $course->session_id = $request->session;
+            $course->slug = $request->slug;
+            $course->name = $request->name;
+            $course->save();
+            return redirect()->back()->with('message', 'nouveau cours ajouté !!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('message', 'Oups une erreur innatendue s\'est produite !!');
+        }
     }
 
     /**
@@ -52,7 +80,34 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        //
+        try {
+            $request->validate(
+                [
+                    'niveau' => 'required',
+                    'teacher' => 'required',
+                    'session' => 'required',
+                    'slug' => 'required',
+                    'name' => 'required',
+                ],
+                [
+                    'niveau.required' => 'Le champ niveau ne peut etre vide',
+                    'teacher.required' => 'Le champ enseignant ne peut etre vide',
+                    'session.required' => 'Le champ session ne peut etre vide',
+                    'slug.required' => 'Le champ code cours ne peut etre vide',
+                    'name.required' => 'Le champ nom de cours ne peut etre vide',
+                ],
+            );
+
+            $course->niveau_id = $request->niveau;
+            $course->teacher_id = $request->teacher;
+            $course->session_id = $request->session;
+            $course->slug = $request->slug;
+            $course->name = $request->name;
+            $course->save();
+            return redirect()->back()->with('message', 'cours modifié avec success !!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('message', 'Oups une erreur innatendue s\'est produite !!');
+        }
     }
 
     /**
@@ -60,6 +115,10 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        try{
+            $course->delete();
+        }catch(\Exception $e){
+            return redirect()->back()->with('message','Oups une erreur innatendue s\'est produite');
+        }
     }
 }
