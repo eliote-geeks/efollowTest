@@ -163,11 +163,13 @@
                 </ul>
             </div>
         </div>
+        
+    {{-- </div> --}}
+
+
+    <div class="content-wrap">
+        {{ $slot }}
     </div>
-
-
-    {{ $slot }}
-
 
 
     <script>
