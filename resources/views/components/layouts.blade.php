@@ -107,7 +107,7 @@
                         </div>
                     </a></li>
 
-                    <li><a href="speciality-list.php" aria-expanded="false">
+                    <li><a href="{{ route('specialté.index') }}" aria-expanded="false">
                         <div class="d-flex align-items-center">
                             <i class="fas fa-book"></i><span 
                                 class="nav-text" style="margin-left: 12px;">Liste des spécialités</span> 
@@ -119,7 +119,7 @@
                         class="nav-text">Gestion des étudiants</span></a></li>
                     <!-- <li><a href="index.html"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
                     </li> -->
-                    <li><a href="students-list.php" aria-expanded="false">
+                    <li><a href="{{ route('etudiant.index') }}" aria-expanded="false">
                         <div class="d-flex align-items-center">
                         <i class="fas fa-graduation-cap"></i><span 
                                 class="nav-text" style="margin-left: 12px;">Liste des étudiants</span> 
@@ -131,7 +131,7 @@
                         class="nav-text">Gestion des professeurs</span></a></li>
                     <!-- <li><a href="index.html"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
                     </li> -->
-                    <li><a href="teachers-list.php" aria-expanded="false">
+                    <li><a href="{{ route('enseignant.index') }}" aria-expanded="false">
                         <div class="d-flex align-items-center">
                         <i class="fas fa-chalkboard-teacher"></i><span 
                                 class="nav-text" style="margin-left: 12px;">Liste des professeurs</span> 
@@ -143,14 +143,14 @@
                         class="nav-text">Gestion des cours</span></a></li>
                     <!-- <li><a href="index.html"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
                     </li> -->
-                    <li><a href="course-list.php" aria-expanded="false">
+                    <li><a href="{{ route('cours.index') }}" aria-expanded="false">
                         <div class="d-flex align-items-center">
                         <i class="fas fa-book-open"></i><span 
                                 class="nav-text" style="margin-left: 12px;">Liste des cours</span> 
                         </div>
                     </a></li>  
 
-                    <li><a href="session-list.php" aria-expanded="false">
+                    <li><a href="{{ route('session.index') }}" aria-expanded="false">
                         <div class="d-flex align-items-center">
                         <i class="fas fa-clock"></i><span 
                                 class="nav-text" style="margin-left: 12px;">Liste des sessions</span> 
