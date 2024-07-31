@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\NiveauController;
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SmartCardController;
 use App\Http\Controllers\SpecialiteController;
 use App\Http\Controllers\StudentController;
@@ -32,6 +33,8 @@ Route::get('carte/ajout/{student}', [SmartCardController::class, 'addGetStudentC
 Route::post('carte/ajout/{student}', [SmartCardController::class, 'addPostStudentCard'])->name('addPostStudentCard');
 Route::get('carte/search/{student}', [SmartCardController::class, 'searchByStudentCard'])->name('searchByStudentCard');
 
+
 Route::resource('specialté', SpecialiteController::class);
 Route::resource('niveau', NiveauController::class);
 Route::resource('etudiant', StudentController::class);
+Route::resource('session',SessionController::class);
