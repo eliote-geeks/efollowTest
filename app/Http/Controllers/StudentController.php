@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Student;
 use App\Models\SmartCard;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -50,7 +51,7 @@ class StudentController extends Controller
 
             $student = new Student();
             $student->user_id = $user->id;
-            $student->matricular = date('Y') . strtoupper(uniqid());
+            $student->matricular = date('Y') .Str::limit($request->first,3) .strtoupper(uniqid());
             $student->firstName = $request->firstName;
             $student->lastName = $request->lastName;
             $student->birth_date = $request->birth_date;
