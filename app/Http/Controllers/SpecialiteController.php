@@ -13,7 +13,7 @@ class SpecialiteController extends Controller
      */
     public function index()
     {
-        //
+        $specialites = Specialite::latest()->get();
     }
 
     /**

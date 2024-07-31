@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\NiveauController;
 use App\Http\Controllers\SpecialiteController;
+use App\Models\Niveau;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,4 +31,5 @@ Route::middleware([
 });
 
 
-Route::resources('specialté',SpecialiteController::class);
+Route::resource('specialté',SpecialiteController::class);
+Route::resource('niveau',NiveauController::class);
