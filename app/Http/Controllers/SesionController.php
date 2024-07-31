@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Session;
+use App\Models\Sesion;
 use Illuminate\Http\Request;
 
-class SessionController extends Controller
+class SesionController extends Controller
 {
-    /**
+       /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $sessions = Session::latest()->get();
+        $sessions = Sesion::latest()->get();
     }
 
     /**
@@ -45,7 +45,7 @@ class SessionController extends Controller
                 ],
             );
 
-            $session = new Session();
+            $session = new Sesion();
             $session->name = $request->name;
             $session->start = $request->start;
             $session->end = $request->end;
@@ -59,7 +59,7 @@ class SessionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Session $session)
+    public function show(Sesion $session)
     {
         //
     }
@@ -67,7 +67,7 @@ class SessionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Session $session)
+    public function edit(Sesion $session)
     {
         //
     }
@@ -75,7 +75,7 @@ class SessionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Session $session)
+    public function update(Request $request, Sesion $session)
     {
         try {
             $request->validate(
@@ -107,7 +107,7 @@ class SessionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Session $session)
+    public function destroy(Sesion $session)
     {
         try{
             $session->delete();

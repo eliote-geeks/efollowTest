@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\CourseController;
-use App\Http\Controllers\NiveauController;
-use App\Http\Controllers\SessionController;
-use App\Http\Controllers\SmartCardController;
-use App\Http\Controllers\SpecialiteController;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\TeacherController;
 use App\Models\Niveau;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\NiveauController;
+use App\Http\Controllers\SesionController;
+use App\Http\Controllers\SessionController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\SmartCardController;
+use App\Http\Controllers\SpecialiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,6 @@ Route::get('carte/search/{student}', [SmartCardController::class, 'searchByStude
 Route::resource('specialté', SpecialiteController::class);
 Route::resource('niveau', NiveauController::class);
 Route::resource('etudiant', StudentController::class);
-Route::resource('session',SessionController::class);
+Route::resource('session',SesionController::class);
 Route::resource('enseignant', TeacherController::class);
 Route::resource('cours',CourseController::class);
