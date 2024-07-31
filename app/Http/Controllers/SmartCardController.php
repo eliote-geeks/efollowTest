@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use App\Models\Course;
+use App\Models\endSchedule;
+use App\Models\Program;
 use App\Models\Student;
+use App\Models\Presence;
 use App\Models\SmartCard;
 use Illuminate\Http\Request;
+use App\Models\StudentCourse;
 
 class SmartCardController extends Controller
 {
@@ -81,7 +86,7 @@ class SmartCardController extends Controller
                     'id_card_smart' => $id,
                     'status' => 'on',
                 ])->firstOrFail();
-                $mutual = Student::find($card->user_id);
+                $student = Student::find($card->user_id);
 
                 return redirect()->route('student.show', [
                     'student' => $student,
@@ -94,10 +99,111 @@ class SmartCardController extends Controller
         }
     }
 
-
-    public function presenceBadge(Request $request)
+    public function scheduleCard(Request $request, Student $student, Program $program)
     {
-        // $table->foreignId('course_id')->references('id')->on('courses')->onDelete('cascade');
-        // // $table->foreignId('program_id')->references('id')->on('programs')->onDelete('cascade');
+        try {
+            $request->validate([
+                'id_card_smart' => 'required|min:10|max:10',
+            ]);
+
+            $id = $this->remplace($request->id_card_smart);
+
+            if (
+                SmartCard::where([
+                    'id_card_smart' => $id,
+                    'status' => 'on',
+                ])->count() > 0
+            ) {
+                $card = SmartCard::where([
+                    'id_card_smart' => $id,
+                    'status' => 'on',
+                ])->firstOrFail();
+                $student = Student::find($card->user_id);
+                if (
+                    Presence::where([
+                        'program_id' => $program->id,
+                        'student_id' => $student->id,
+                    ])->count() == 0
+                ) {
+                    $presence = new Presence();
+                    $presence->program_id = $program->id;
+                    $presence->student_id = $student->id;
+                    $presence->save();
+                    return redirect()->back()->with('message', 'Etudiant Présent enregistré !!');
+                } else {
+                    return redirect()->back()->with('message', 'Etudiant déja enregistré !!');
+                }
+
+                return redirect()->route('student.show', [
+                    'student' => $student,
+                ]);
+            } else {
+                return redirect()->back()->with('message', 'Etudiant non repertorié !');
+            }
+        } catch (Exception $e) {
+            return redirect()->back()->with('message', 'Une erreur s\'est produite');
+        }
+    }
+
+    public function addStudentCourseCard(Request $request, Student $student, Course $course)
+    {
+        try {
+            $request->validate([
+                'id_card_smart' => 'required|min:10|max:10',
+            ]);
+
+            $id = $this->remplace($request->id_card_smart);
+
+            if (
+                SmartCard::where([
+                    'id_card_smart' => $id,
+                    'status' => 'on',
+                ])->count() > 0
+            ) {
+                $card = SmartCard::where([
+                    'id_card_smart' => $id,
+                    'status' => 'on',
+                ])->firstOrFail();
+                $student = Student::find($card->user_id);
+                if (
+                    StudentCourse::where([
+                        'course_id' => $course->id,
+                        'student_id' => $student->id,
+                    ])->count() == 0
+                ) {
+                    $course_student = new StudentCourse();
+                    $course_student->program_id = $course->id;
+                    $course_student->student_id = $student->id;
+                    $course_student->save();
+                    return redirect()->back()->with('message', 'Etudiant Ajouté au cours !!');
+                } else {
+                    return redirect()->back()->with('message', 'Etudiant déja enregistré !!');
+                }
+
+                return redirect()->route('student.show', [
+                    'student' => $student,
+                ]);
+            } else {
+                return redirect()->back()->with('message', 'Etudiant non repertorié !');
+            }
+        } catch (Exception $e) {
+            return redirect()->back()->with('message', 'Une erreur s\'est produite');
+        }
+    }
+
+    public function endListCardschedule(Program $program)
+    {
+        try {
+            if (endSchedule::where('program_id', $program->id)->count() == 0) {
+                $endschedule = new endSchedule();
+                $endschedule->program_id = $program->id;
+                $endschedule->status = 1;
+                $endschedule->save();
+            } else {
+                return redirect()->back()->with('message', 'programme déja terminé');
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->with('message', 'Une erreur s\'est produite');
+        }
     }
 }

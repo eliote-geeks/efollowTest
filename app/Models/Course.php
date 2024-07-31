@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Niveau;
+use App\Models\Sesion;
 use App\Models\Program;
 use App\Models\Session;
 use App\Models\Teacher;
@@ -20,7 +21,7 @@ class Course extends Model
 
     public function session()
     {
-        return $this->hasMany(Session::class);
+        return $this->hasMany(Sesion::class);
     }
 
     public function teacher()
