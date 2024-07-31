@@ -11,7 +11,7 @@
 </head>
 <body>
     <div>
-        <form id="schedule-form" action="{{ route('schedule.store') }}" method="POST">
+        <form id="schedule-form" action="" method="POST">
             @csrf
             <div>
                 <label for="day">Jour</label>
@@ -47,7 +47,7 @@
 
     <div id='calendar'></div>
 
-    <script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
 
@@ -64,6 +64,6 @@
 
             calendar.render();
         });
-    </script>
+    </script> --}}
 </body>
 </html>
