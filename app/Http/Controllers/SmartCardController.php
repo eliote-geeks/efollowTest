@@ -93,4 +93,11 @@ class SmartCardController extends Controller
             return redirect()->back()->with('message', 'Une erreur s\'est produite');
         }
     }
+
+
+    public function presenceBadge(Request $request)
+    {
+        // $table->foreignId('course_id')->references('id')->on('courses')->onDelete('cascade');
+        // // $table->foreignId('program_id')->references('id')->on('programs')->onDelete('cascade');
+    }
 }
