@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('students', function (Blueprint $table) {
-            $table->id();$table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('firstName');
-            $table->string('lastName');
-            $table->string('matricular');
-            $table->string('birth_date');
+        Schema::create('smart_cards', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->references('id')->on('students')->onDelete('cascade');
+            $table->integer('id_card_smart');
+            $table->string('status')->default('false');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('smart_cards');
     }
 };

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Student;
+use App\Models\SmartCard;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -12,7 +14,11 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $students = Student::latest()->get();
+    }
+
+    public function addGetStudentCard(Student $student)
+    {
     }
 
     /**
@@ -28,7 +34,31 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $request->validate([
+                'firstName' => 'required',
+                'lastName' => 'required',
+                'birth_date' => 'required|date',
+            ]);
+
+            $user = new User();
+            $user->name = $request->first;
+            $user->email = $request->last . rand(0, 1000000) . @'ggmail' . rand(uniqid(), uniqid());
+            $user->password = '£1';
+            $user->user_type = 'App\Models\Student';
+            $user->save();
+
+            $student = new Student();
+            $student->user_id = $user->id;
+            $student->matricular = date('Y') . strtoupper(uniqid());
+            $student->firstName = $request->firstName;
+            $student->lastName = $request->lastName;
+            $student->birth_date = $request->birth_date;
+            $student->save();
+            return redirect()->back()->with('message', 'Etudiant Ajouté !!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('message', 'oups Une erreur innatendue s\'est produite');
+        }
     }
 
     /**
@@ -52,7 +82,21 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        try {
+            $request->validate([
+                'firstName' => 'required',
+                'lastName' => 'required',
+                'birth_date' => 'required|date',
+            ]);
+
+            $student->firstName = $request->firstName;
+            $student->lastName = $request->lastName;
+            $student->birth_date = $request->birth_date;
+            $student->save();
+            return redirect()->back()->with('message', 'Etudiant Edité !!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('message', 'oups Une erreur innatendue s\'est produite');
+        }
     }
 
     /**
@@ -60,6 +104,7 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $student->delete();
+        return redirect()->back()->with('message', 'Etudiant Retiré !!');
     }
 }
