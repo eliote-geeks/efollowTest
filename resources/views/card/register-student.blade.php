@@ -14,11 +14,15 @@
                     <div class="card">
                       <div class="card-body pt-3">
                         <!-- Bordered Tabs -->
-                        <ul class="nav nav-tabs nav-tabs-bordered">
-          
-                          <li class="nav-item">
-                            <h3>ENREGISTRER UN ETUDIANT A UN COURS</h3>
-                          </li>
+                        <ul class="nav nav-tabs nav-tabs-bordered d-flex justify-content-between align-items-center">
+                            <li class="nav-item">
+                                <h3 class="mb-0">ENREGISTRER UN ETUDIANT A UN COURS</h3>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('cours.index') }}">
+                                    <i class="fas fa-arrow-left text-secondary fs-4"></i>
+                                </a>
+                            </li>
                         </ul>
 
                         <div class="d-flex flex-column justify-content-center align-items-center" style="height: 300px;">
