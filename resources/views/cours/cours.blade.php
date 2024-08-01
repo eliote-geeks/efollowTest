@@ -52,12 +52,12 @@
                                                             <button style="border: none; text-decoration: none; background: none;" type="submit" name="deleteCourse" data-bs-toggle="modal" data-bs-target="#deleteCourseModal{{ $c->id }}">
                                                                 <i class="fa fa-trash text-danger" style="font-size: 1.3rem; cursor: pointer; padding-right: 10px;"></i>
                                                             </button>
-                                                            <a name="CourseDetails" href="{{ route('registerSTudentCourse',$c) }}">coursetudiant
-                                                                <i class="fa fa-register" style="font-size: 1.3rem; cursor: pointer; padding-right: 10px; color: gray;"></i>
+                                                            <a name="CourseDetails" href="{{ route('registerSTudentCourse',$c) }}">
+                                                                <i class="fa fa-book" style="font-size: 1.3rem; cursor: pointer; padding-right: 10px; color: gray;"></i>
                                                             </a>
 
-                                                            <a name="CourseDetails" href="{{ route('programCourse',$c) }}"> programm
-                                                                <i class="fa fa-register" style="font-size: 1.3rem; cursor: pointer; padding-right: 10px; color: gray;"></i>
+                                                            <a name="CourseDetails" href="{{ route('programCourse',$c) }}">
+                                                                <i class="fa fa-book-reader" style="font-size: 1.3rem; cursor: pointer; padding-right: 10px; color: gray;"></i>
                                                             </a>
                                                         </span>
                                                     </td>
