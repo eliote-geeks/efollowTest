@@ -42,7 +42,7 @@
                       </div>
                     </div>
           
-
+                    <a href="{{ route('endListCardschedule',$program) }}">Fermer la liste des absences</a>
             </div>
         </div>
         <!--**********************************

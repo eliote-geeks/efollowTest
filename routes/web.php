@@ -45,6 +45,10 @@ Route::get('schedule/card/{program}',[SmartCardController::class,'schedule'])->n
 
 Route::get('/levels/{speciality}', [StudentController::class, 'getLevelsBySpeciality']);
 Route::get('program/course/{course}',[ProgramController::class,'programCourse'])->name('programCourse');
+Route::get('program/presence/{program}',[ProgramController::class,'presenceStudent'])->name('presence.student');
+Route::get('program/absence/{program}',[ProgramController::class,'absenceStudent'])->name('absence.student');
+
+
 
 
 Route::resource('specialté', SpecialiteController::class);
