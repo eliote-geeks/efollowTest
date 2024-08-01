@@ -106,7 +106,7 @@
                         class="nav-text">Gestion des classes</span></a></li>
                     <!-- <li><a href="index.html"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
                     </li> -->
-                    <li><a href="level-list.php" aria-expanded="false">
+                    <li><a href="{{ route('niveau.index') }}" aria-expanded="false">
                         <div class="d-flex align-items-center">
                         <i class="fas fa-star"></i><span 
                                 class="nav-text" style="margin-left: 12px;">Liste des niveaux</span> 

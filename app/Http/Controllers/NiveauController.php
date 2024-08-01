@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Niveau;
+use App\Models\Specialite;
 use Illuminate\Http\Request;
 
 class NiveauController extends Controller
@@ -13,6 +14,11 @@ class NiveauController extends Controller
     public function index()
     {
         $niveaux = Niveau::latest()->get();
+        $specialites = Specialite::all();
+        return view('level.level-list',[
+            'niveaux' => $niveaux,
+            'specialites' => $specialites,
+        ]);
     }
 
     /**
@@ -31,11 +37,11 @@ class NiveauController extends Controller
         try {
             $request->validate([
                 'name' => 'required',
-                'specialite' => 'required|integer|exists:specialites',
+                'specialite' => 'required|integer',
             ]);
             $niveau = new Niveau();
             $niveau->name = $request->name;
-            $niveau->specialty_id = $request->specialite;
+            $niveau->specialite_id = $request->specialite;
             $niveau->save();
             return redirect()->back()->with('message', 'Niveau Ajoutée avec success !!');
         } catch (\Exception $e) {

@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Niveau extends Model
 {
     use HasFactory;
-    public function specialty()
+    public function specialite()
     {
         return $this->belongsTo(Specialite::class);
     }

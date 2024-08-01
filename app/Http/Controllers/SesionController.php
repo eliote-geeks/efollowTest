@@ -13,6 +13,9 @@ class SesionController extends Controller
     public function index()
     {
         $sessions = Sesion::latest()->get();
+        return view('session.session',[
+            'sessions' => $sessions,
+        ]);
     }
 
     /**

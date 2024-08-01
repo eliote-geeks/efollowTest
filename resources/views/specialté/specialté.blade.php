@@ -30,21 +30,90 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <form action='#' method="post">
+                                            {{-- <form action='#' method="post"> --}}
+                                                @foreach ($specialté as $s)
+                                                
                                                 <tr>
-                                                    <td>Physique appliquée</td>
+                                                    <td>{{ $s->name }}</td>
                                                     <td class="text-center">
                                                         <span>
-                                                            <button style="border: none; text-decoration: none; background: none;" type="submit" name="editSpeciality" data-bs-toggle="modal" data-bs-target="#editSpecialityModal">
+                                                            <button style="border: none; text-decoration: none; background: none;" type="submit" name="editSpeciality" data-bs-toggle="modal" data-bs-target="#editSpecialityModal{{ $s->id }}">
                                                                 <i class="fa fa-edit text-success" style="font-size: 1.3rem; cursor: pointer; padding-right: 10px;"></i>
                                                             </button>
-                                                            <button style="border: none; text-decoration: none; background: none;" type="submit" name="deleteSpeciality" data-bs-toggle="modal" data-bs-target="#deleteSpecialityModal">
+                                                            <button style="border: none; text-decoration: none; background: none;" type="submit" name="deleteSpeciality" data-bs-toggle="modal" data-bs-target="#deleteSpecialityModal{{ $s->id }}">
                                                                 <i class="fa fa-trash text-danger" style="font-size: 1.3rem; cursor: pointer; padding-right: 10px;"></i>
                                                             </button>
                                                         </span>
                                                     </td>
                                                 </tr>
-                                            </form>
+
+                                                        <!--**********************************
+            edit speciality modal start
+        ***********************************-->
+        <div class="modal fade" id="editSpecialityModal{{ $s->id }}" tabindex="-1" aria-labelledby="editSpecialityModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editSpecialityModalLabel">Modifier la spécialité</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="#" method="POST">
+                            <div class="mb-3">
+                                <label for="specialityName" class="form-label">Nom de la spécialité</label>
+                                <input type="text" class="form-control" id="editSpecialityName" name="name" placeholder="Entrez le nom de la spécialité" value="{{ $s->name }}" required>
+                                @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <button type="submit" class="btn btn-primary">Modifier</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            edit speciality modal end
+        ***********************************-->
+
+        <!--**********************************
+            delete speciality modal start
+        ***********************************-->
+        <div class="modal fade" id="deleteSpecialityModal{{ $s->id }}" tabindex="-1" aria-labelledby="deleteSpecialityModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteSpecialityModalLabel">Confirmer la suppression de la spécialité</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="javascript:;" method="POST">
+                        <div class="modal-body">
+                            <h4 class=" text-danger">Êtes-vous sûr de vouloir supprimer cette spécialité?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                            
+                            <form action="{{ route('specialté.destroy',$s) }}" method="post"></form>
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-trash me-2 text-danger"></i>
+                            Supprimer
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            delete speciality modal end
+        ***********************************-->
+
+                                                @endforeach
+                                            {{-- </form> --}}
                                         </tbody>
                                     </table>
                                 </div>
@@ -70,10 +139,14 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="#" method="POST">
+                        <form action="{{ route('specialté.store') }}" method="POST">
+                            @csrf
                             <div class="mb-3">
                                 <label for="specialityName" class="form-label">Nom de la spécialité</label>
-                                <input type="text" class="form-control" id="specialityName" name="specialityName" placeholder="Entrez le nom de la spécialité" required>
+                                <input type="text" class="form-control" id="specialityName" name="name" placeholder="Entrez le nom de la spécialité" required>
+                                @error('name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
@@ -88,62 +161,5 @@
             Add speciality modal end
         ***********************************-->
 
-        <!--**********************************
-            edit speciality modal start
-        ***********************************-->
-        <div class="modal fade" id="editSpecialityModal" tabindex="-1" aria-labelledby="editSpecialityModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editSpecialityModalLabel">Modifier la spécialité</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="#" method="POST">
-                            <div class="mb-3">
-                                <label for="specialityName" class="form-label">Nom de la spécialité</label>
-                                <input type="text" class="form-control" id="editSpecialityName" name="editSpecialityName" placeholder="Entrez le nom de la spécialité" value="Physique appliquée" required>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                <button type="submit" class="btn btn-primary">Modifier</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--**********************************
-            edit speciality modal end
-        ***********************************-->
-
-        <!--**********************************
-            delete speciality modal start
-        ***********************************-->
-        <div class="modal fade" id="deleteSpecialityModal" tabindex="-1" aria-labelledby="deleteSpecialityModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteSpecialityModalLabel">Confirmer la suppression de la spécialité</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="#" method="POST">
-                        <div class="modal-body">
-                            <h4 class=" text-danger">Êtes-vous sûr de vouloir supprimer cette spécialité?</h4>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                            <button type="submit" class="btn btn-danger">
-                            <i class="fas fa-trash me-2 text-danger"></i>
-                            Supprimer
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!--**********************************
-            delete speciality modal end
-        ***********************************-->
 
 </x-layouts>
