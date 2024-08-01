@@ -13,7 +13,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
-                                    <h4 class="mb-0 me-3" style="font-weight: bold; color: gray;">Liste des étudiants :</h4>
+                                    <h4 class="mb-0 me-3" style="font-weight: bold; color: gray;">Liste des professeurs :</h4>
                                     <button class="btn btn-primary rounded-pill ms-auto" data-bs-toggle="modal" data-bs-target="#addTeacherModal">
                                         <i class="fas fa-plus me-2"></i>
                                         Ajouter un professeur

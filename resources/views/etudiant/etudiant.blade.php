@@ -154,14 +154,14 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <ul class="nav nav-tabs nav-tabs-bordered">
+                    {{-- <ul class="nav nav-tabs nav-tabs-bordered">
                             <li class="nav-item">
                                 <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#addInfos">Remplir les informations</button>
                             </li>
-                            {{-- <li class="nav-item">
+                             <li class="nav-item">
                                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#addCarte">Attribuer une carte</button>
-                            </li> --}}
-                        </ul>
+                            </li> 
+                        </ul> --}}
 
                         <div class="tab-content pt-2">
                             <div class="tab-pane fade show active profile-overview" id="addInfos">
