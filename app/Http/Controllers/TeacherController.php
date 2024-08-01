@@ -16,6 +16,9 @@ class TeacherController extends Controller
     public function index()
     {
         $teachers = Teacher::latest()->get();
+        return view('enseignant.enseignant',[
+            'teachers' => $teachers,
+        ]);
     }
 
     /**
@@ -88,7 +91,7 @@ class TeacherController extends Controller
             $request->validate([
                 'name' => 'required',
                 'email' => 'required|email',
-                'password' => 'required|min:8'
+                // 'password' => 'required|min:8'
             ],[
                 'name.required' => 'le champ Nom ne peut rester vide',
                 'email.required' => 'le champ Email ne peut rester vide',
