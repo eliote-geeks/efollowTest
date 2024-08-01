@@ -15,7 +15,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::all();
+        $courses = Course::latest()->get();
         $teachers = Teacher::all();
         $sessions = Sesion::all();
         $specialities = Specialite::all();

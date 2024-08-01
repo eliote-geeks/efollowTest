@@ -26,18 +26,21 @@
                                                 <th scope="col">Cours</th>
                                                 <th scope="col">Heure de debut</th>
                                                 <th scope="col">Heure de fin</th>
-                                                <th scope="col">Nom du professeur</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($absences as $p)
+                                                
+                                           
                                             <tr>
-                                                <td>Etudiant 1</td>
-                                                <td>Lundi, 02 Aout</td>
-                                                <td>maths</td>
-                                                <td>12:30</td>
-                                                <td>15:30</td>
-                                                <td>Professeur 1</td>
+                                                <td>{{ $p->student->firstName }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($p->program->day)->format('d, M Y') }}</td>
+                                                <td>{{ $p->program->course->name }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($p->program->start_Hour)->format('H:i') }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($p->program->end_Hour)->format('H:i') }}</td>
+                                                
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Course;
-use App\Models\endSchedule;
+use App\Models\Absence;
 use App\Models\Program;
 use App\Models\Student;
 use App\Models\Presence;
 use App\Models\SmartCard;
+use App\Models\endSchedule;
 use Illuminate\Http\Request;
 use App\Models\StudentCourse;
+use Carbon\Carbon;
 
 class SmartCardController extends Controller
 {
@@ -203,10 +205,32 @@ class SmartCardController extends Controller
     {
         try {
             if (endSchedule::where('program_id', $program->id)->count() == 0) {
+                $course = $program->course_id;
+                
+                $start = Carbon::parse($program->start_Hour);
+                $end = Carbon::parse($program->end_Hour);
+                $time = $start->diffInMinutes($end);
+                foreach(StudentCourse::where('course_id',$course)->get() as $sc){
+                    if(Presence::where([
+                        'program_id' => $program->id,
+                        'student_id' => $sc->student_id
+                        ])->count() == 0){
+                            $ab = new Absence();
+                            $ab->student_id = $sc->student_id;
+                            $ab->program_id = $program->id;
+                            $ab->duree = $time;
+                            $ab->save();
+                        }
+                }
+
                 $endschedule = new endSchedule();
                 $endschedule->program_id = $program->id;
                 $endschedule->status = 1;
                 $endschedule->save();
+                
+                return redirect()->route('programCourse',[
+                    'course' => $course
+                ]);
             } else {
                 return redirect()->back()->with('message', 'programme déja terminé');
             }

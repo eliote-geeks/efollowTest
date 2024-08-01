@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absence;
 use Carbon\Carbon;
 use App\Models\Course;
+use App\Models\Presence;
 use App\Models\Program;
 use Illuminate\Http\Request;
 
@@ -113,11 +115,13 @@ class ProgramController extends Controller
 
     public function absenceStudent(Program $program)
     {
-        return view();
+        $absences = Absence::where('program_id',$program->id)->get();
+        return view('absence.absence',compact('absences'));
     }
 
     public function presenceStudent(Program $program)
     {
-        return view();
+        $presences = Presence::where('program_id',$program->id)->get();
+        return view('presence.presence',compact('presences'));
     }
 }

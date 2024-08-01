@@ -13,6 +13,7 @@
     <link href="vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="icons/fontawesome/css/all.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>

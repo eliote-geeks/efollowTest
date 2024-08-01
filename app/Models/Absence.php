@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Absence extends Model
 {
     use HasFactory;
+    
+    public function program()
+    {
+        return $this->belongsTo(Program::class);
+    }
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 }
