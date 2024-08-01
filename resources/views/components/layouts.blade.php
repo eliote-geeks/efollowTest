@@ -164,13 +164,6 @@
                         </div>
                     </a></li>
 
-                    <li><a href="program-list.php" aria-expanded="false">
-                        <div class="d-flex align-items-center">
-                        <i class="fas fa-book-reader"></i><span 
-                                class="nav-text" style="margin-left: 12px;">Liste des programmes</span> 
-                        </div>
-                    </a></li>
-
                     <li class="nav-label first active">
                     <span 
                         class="nav-text">Historique</span></a></li>
