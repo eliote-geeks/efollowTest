@@ -93,18 +93,27 @@
                         @csrf
                         <div class="mb-3">
                             <label for="teacherName" class="form-label">Jour</label>
-                            <input type="date" class="form-control" id="programDate" name="programDate" required>
+                            <input type="text" class="form-control" id="programDate" name="day" required>
+                            @error('day')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                         </div>
                         <input type="hidden" name="course" value="{{ $course }}">
                         <div class="mb-3">
                             <label for="teacherName" class="form-label">Heure de début</label>
-                            <input type="time" class="form-control" id="programStartHour" name="programStartHour"
+                            <input type="time" class="form-control" id="programStartHour" name="start_hour"
                                 required>
+                                @error('start_hour')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="teacherName" class="form-label">Heure de fin</label>
-                            <input type="time" class="form-control" id="programEndHour" name="programEndHour"
+                            <input type="time" class="form-control" id="programEndHour" name="end_hour"
                                 required>
+                                @error('end_hour')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
