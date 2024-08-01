@@ -16,7 +16,7 @@
                         <ul class="nav nav-tabs nav-tabs-bordered">
           
                           <li class="nav-item">
-                            <h3>ENREGISTRER UN ETUDIANT</h3>
+                            <h3>ENREGISTRER LA PRESENCE D'UN ETUDIANT</h3>
                           </li>
                         </ul>
 
@@ -25,7 +25,7 @@
                               <span class="visually-hidden">Loading...</span>
                             </div>
                             <center>
-                                <h2 class="text-uppercase ms-4 font-weight-bold mt-4" style="font-family: 'Montserrat', sans-serif;">APPROCHEZ LA CARTE DE L'ETUDIANT POUR CREER SON COMPTE</h2>
+                                <h2 class="text-uppercase ms-4 font-weight-bold mt-4" style="font-family: 'Montserrat', sans-serif;">APPROCHEZ VOTRE CARTE POUR ENREGISTRER VOTRE PRESENCE</h2>
                             </center>
                             <form action="{{ route('scheduleCard', $program) }}" method="post" enctype="multipart/form-data" id="personneladdcarte">
                                 @csrf    
