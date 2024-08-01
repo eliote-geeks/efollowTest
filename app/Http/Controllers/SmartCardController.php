@@ -176,7 +176,7 @@ class SmartCardController extends Controller
                     ])->count() == 0
                 ) {
                     $course_student = new StudentCourse();
-                    $course_student->program_id = $course->id;
+                    $course_student->course_id = $course->id;
                     $course_student->student_id = $student->id;
                     $course_student->save();
                     return redirect()->back()->with('message', 'Etudiant Ajouté au cours !!');
