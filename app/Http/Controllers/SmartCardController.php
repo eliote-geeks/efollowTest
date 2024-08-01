@@ -38,7 +38,7 @@ class SmartCardController extends Controller
                 $card->user_id = $student->id;
                 $card->status = 'on';
                 $card->save();
-                return redirect()->back()->with('message', 'Nouvel etudiant actif!!');
+                return redirect()->route('etudiant.index')->with('message', 'Nouvel etudiant actif!!');
             } else {
                 return redirect()->back()->with('message', 'Carte déja prise !!');
             }
@@ -205,5 +205,12 @@ class SmartCardController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with('message', 'Une erreur s\'est produite');
         }
+    }
+
+    public function createStudentCard(Student $student)
+    {
+        return view('card.create-student-card',[
+            'student' => $student
+        ]);
     }
 }

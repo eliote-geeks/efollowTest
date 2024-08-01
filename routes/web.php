@@ -32,12 +32,16 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     })->name('dashboard');
 });
 
-Route::get('carte/ajout/{student}', [SmartCardController::class, 'addGetStudentCard'])->name('addGetStudentCard');
+Route::get('carte/ajout/{student}', [SmartCardController::class, 'createStudentCard'])->name('addGetStudentCard');
 Route::post('carte/ajout/{student}', [SmartCardController::class, 'addPostStudentCard'])->name('addPostStudentCard');
 Route::get('carte/search/{student}', [SmartCardController::class, 'searchByStudentCard'])->name('searchByStudentCard');
 route::post('carte/shedule/{student}/{program}',[SmartCardController::class,'scheduleCard'])->name('scheduleCard');
 route::post('carte/etudiant/{student}/{course}',[SmartCardController::class,'addStudentCourseCard'])->name('addStudentCourseCard');
 route::get('carte/etudiant/{program}',[SmartCardController::class,'endListCardschedule'])->name('endListCardschedule');
+
+
+
+Route::get('/levels/{speciality}', [StudentController::class, 'getLevelsBySpeciality']);
 
 Route::resource('specialté', SpecialiteController::class);
 Route::resource('niveau', NiveauController::class);

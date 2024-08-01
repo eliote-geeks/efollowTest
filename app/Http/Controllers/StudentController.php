@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Niveau;
 use App\Models\User;
 use App\Models\Student;
 use App\Models\SmartCard;
+use App\Models\Specialite;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -16,6 +18,10 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::latest()->get();
+        return view('etudiant.etudiant',[
+            'students' => $students,
+            'specialities' => Specialite::all()
+        ]);
     }
 
     public function addGetStudentCard(Student $student)
@@ -35,33 +41,43 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        try {
+        // try {
             $request->validate([
-                'firstName' => 'required',
-                'lastName' => 'required',
+                'name' => 'required',
                 'niveau' => 'required|integer',
                 'birth_date' => 'required|date',
             ]);
 
             $user = new User();
-            $user->name = $request->first;
-            $user->email = $request->last . rand(0, 1000000) . @'ggmail' . rand(uniqid(), uniqid());
+            $user->name = $request->name;
+            $user->email = $request->name . rand(0, 1000000) . @'ggmail' .uniqid();
             $user->password = '£1';
             $user->user_type = 'App\Models\Student';
             $user->save();
 
+            $matricular = date('Y') .Str::limit($request->first,3) .strtoupper(uniqid());
+            // if(Student::where([
+            //     'matricular' =>  $matricular,
+            //     'first_name' => $request->name,
+            // ])->count() == 0){
             $student = new Student();
             $student->user_id = $user->id;
-            $student->matricular = date('Y') .Str::limit($request->first,3) .strtoupper(uniqid());
-            $student->firstName = $request->firstName;
-            $student->lastName = $request->lastName;
+            $student->matricular = $matricular;
+            $student->firstName = $request->name;
+            $student->lastName = $request->name;
             $student->birth_date = $request->birth_date;
             $student->niveau_id = $request->niveau;
             $student->save();
-            return redirect()->back()->with('message', 'Etudiant Ajouté !!');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('message', 'oups Une erreur innatendue s\'est produite');
-        }
+            
+            return redirect()->route('addGetStudentCard',[
+                'student' => $student
+            ]);
+        // }else{
+        //     return redirect()->back()->with('message', 'Matricule existant creer a nouveau cet utilisateur !!');
+        // }
+        // } catch (\Exception $e) {
+        //     return redirect()->back()->with('message', 'oups Une erreur innatendue s\'est produite');
+        // }
     }
 
     /**
@@ -80,6 +96,12 @@ class StudentController extends Controller
         //
     }
 
+    public function getLevelsBySpeciality($specialityId)
+    {
+        $levels = Niveau::where('specialite_id',$specialityId)->pluck('name', 'id');
+        return response()->json($levels);
+    }
+
     /**
      * Update the specified resource in storage.
      */
@@ -87,13 +109,12 @@ class StudentController extends Controller
     {
         try {
             $request->validate([
-                'firstName' => 'required',
-                'lastName' => 'required',
+                'name' => 'required',
                 'birth_date' => 'required|date',
             ]);
 
-            $student->firstName = $request->firstName;
-            $student->lastName = $request->lastName;
+            $student->firstName = $request->name;
+            $student->lastName = $request->name;
             $student->birth_date = $request->birth_date;
             $student->save();
             return redirect()->back()->with('message', 'Etudiant Edité !!');
