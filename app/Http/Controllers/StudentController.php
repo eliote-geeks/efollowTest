@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Niveau;
 use App\Models\User;
+use App\Models\Niveau;
+use App\Models\Absence;
+use App\Models\Presence;
 use App\Models\Student;
 use App\Models\SmartCard;
 use App\Models\Specialite;
@@ -41,7 +43,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        // try {
+        try {
             $request->validate([
                 'name' => 'required',
                 'niveau' => 'required|integer',
@@ -56,10 +58,10 @@ class StudentController extends Controller
             $user->save();
 
             $matricular = date('Y') .Str::limit($request->first,3) .strtoupper(uniqid());
-            // if(Student::where([
-            //     'matricular' =>  $matricular,
-            //     'first_name' => $request->name,
-            // ])->count() == 0){
+            if(Student::where([
+                'matricular' =>  $matricular,
+                'first_name' => $request->name,
+            ])->count() == 0){
             $student = new Student();
             $student->user_id = $user->id;
             $student->matricular = $matricular;
@@ -72,12 +74,12 @@ class StudentController extends Controller
             return redirect()->route('addGetStudentCard',[
                 'student' => $student
             ]);
-        // }else{
-        //     return redirect()->back()->with('message', 'Matricule existant creer a nouveau cet utilisateur !!');
-        // }
-        // } catch (\Exception $e) {
-        //     return redirect()->back()->with('message', 'oups Une erreur innatendue s\'est produite');
-        // }
+        }else{
+            return redirect()->back()->with('message', 'Matricule existant creer a nouveau cet utilisateur !!');
+        }
+        } catch (\Exception $e) {
+            return redirect()->back()->with('message', 'oups Une erreur innatendue s\'est produite');
+        }
     }
 
     /**
@@ -85,9 +87,17 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        $absences = Absence::where('student_id',$student->id)->get();
+        $presences = Presence::where('student_id',$student->id)->get();
+        return view('etudiant.profil',compact('student','absences','presences'));
     }
 
+    public function see(Student $student)
+    {
+        $absences = Absence::where('student_id',$student->id)->get();
+        $presences = Presence::where('student_id',$student->id)->get();
+        return view('etudiant.profil',compact('student','absences','presences'));
+    }
     /**
      * Show the form for editing the specified resource.
      */

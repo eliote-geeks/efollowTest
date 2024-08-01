@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('program_id')->references('id')->on('programs')->onDelete('cascade');
             $table->foreignId('student_id')->references('id')->on('students')->onDelete('cascade');
-            $table->string('duree');
+            $table->bigInteger('duree');
             $table->timestamps();
         });
     }

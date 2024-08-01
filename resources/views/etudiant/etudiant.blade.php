@@ -42,9 +42,9 @@
                                                         <button style="border: none; text-decoration: none; background: none;" type="button" data-bs-toggle="modal" data-bs-target="#deleteStudentModal{{ $s->id }}">
                                                             <i class="fa fa-trash text-danger" style="font-size: 1.3rem; cursor: pointer; padding-right: 10px;"></i>
                                                         </button>
-                                                        <button style="border: none; text-decoration: none; background: none;" type="button" data-bs-toggle="modal" data-bs-target="#detailsStudentModal{{ $s->id }}">
+                                                        <a style="border: none; text-decoration: none; background: none;" href="{{ route('see',$s) }}">
                                                             <i class="fa fa-eye" style="font-size: 1.3rem; cursor: pointer; padding-right: 10px; color: gray;"></i>
-                                                        </button>
+                                                        </a>
                                                     </span>
                                                 </td>
                                             </tr>
