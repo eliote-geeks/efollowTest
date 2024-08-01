@@ -72,12 +72,18 @@
                         </div>
 
                     <ul class="navbar-nav header-right">
+
                         
                         <li class="nav-item dropdown header-profile">
-                            <a class="nav-link" href="../php/logout">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                            <a class="nav-link" href="{{ route('logout') }}" 
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="fas fa-sign-out fs-5"></i>
                             </a>
                         </li>
+                        
                     </ul>
                 </div>
             </nav>
