@@ -58,10 +58,10 @@ class StudentController extends Controller
             $user->save();
 
             $matricular = date('Y') .Str::limit($request->first,3) .strtoupper(uniqid());
-            if(Student::where([
-                'matricular' =>  $matricular,
-                'first_name' => $request->name,
-            ])->count() == 0){
+            // if(Student::where([
+            //     'matricular' =>  $matricular,
+            //     'first_name' => $request->name,
+            // ])->count() == 0){
             $student = new Student();
             $student->user_id = $user->id;
             $student->matricular = $matricular;
@@ -74,9 +74,9 @@ class StudentController extends Controller
             return redirect()->route('addGetStudentCard',[
                 'student' => $student
             ]);
-        }else{
-            return redirect()->back()->with('message', 'Matricule existant creer a nouveau cet utilisateur !!');
-        }
+        // }else{
+        //     return redirect()->back()->with('message', 'Matricule existant creer a nouveau cet utilisateur !!');
+        // }
         } catch (\Exception $e) {
             return redirect()->back()->with('message', 'oups Une erreur innatendue s\'est produite');
         }
@@ -89,14 +89,16 @@ class StudentController extends Controller
     {
         $absences = Absence::where('student_id',$student->id)->get();
         $presences = Presence::where('student_id',$student->id)->get();
-        return view('etudiant.profil',compact('student','absences','presences'));
+       
+        return view('etudiant.profil',compact('student','absences','presences','TotalAbsenceMinute'));
     }
 
     public function see(Student $student)
     {
         $absences = Absence::where('student_id',$student->id)->get();
         $presences = Presence::where('student_id',$student->id)->get();
-        return view('etudiant.profil',compact('student','absences','presences'));
+        $TotalAbsenceMinute = Absence::where('student_id',$student->id)->sum('duree');
+        return view('etudiant.profil',compact('student','absences','presences','TotalAbsenceMinute'));
     }
     /**
      * Show the form for editing the specified resource.

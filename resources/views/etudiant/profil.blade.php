@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="d-flex justify-content-between mb-3">
                     <h4 class="card-titl" style="font-weight: bold; color: gray;">NOMBRE TOTAL DES ABSENCES DE
-                        NOM_DE_L'ETUDIANT: <strong>150 minutes</strong></h4>
+                        NOM_DE_L'ETUDIANT: <strong>{{ $TotalAbsenceMinute }} minutes</strong></h4>
                 </div>
                 <div class="col-lg-12">
                     <div class="card">
@@ -36,8 +36,7 @@
                                                 <td>{{ $a->student->firstName }}</td>
                                                 <td>{{ \Carbon\Carbon::parse($a->program->day)->format('d, M Y') }}</td>
                                                 <td>{{ $a->program->course->name }}</td>
-                                                <td>{{ \Carbon\Carbon::parse($a->program->start_Hour)->format('H:i') }}
-                                                </td>
+                                                <td>{{ \Carbon\Carbon::parse($a->program->start_Hour)->format('H:i') }}</td>
                                                 <td>{{ \Carbon\Carbon::parse($a->program->end_Hour)->format('H:i') }}
                                                 </td>
                                             </tr>
