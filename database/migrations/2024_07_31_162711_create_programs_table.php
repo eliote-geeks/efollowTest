@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
-            $table->string('day');
+            $table->timestamp('day');
             $table->foreignId('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->time('start_Hour');
             $table->time('end_Hour');

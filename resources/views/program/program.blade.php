@@ -38,7 +38,7 @@
                                     <tbody>
                                         @foreach ($schedules as $s)
                                             <tr>
-                                                <td>{{ $s->day }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($s->day)->format('d, M Y') }}</td>
                                                 <td>{{ $s->course->name }}</td>
                                                 <td>{{ \Carbon\Carbon::parse($s->start_Hour)->format('H:i') }}</td>
                                                 <td>{{ \Carbon\Carbon::parse($s->end_Hour)->format('H:i') }}</td>
@@ -58,7 +58,9 @@
                                                             <i class="fa fa-trash text-danger"
                                                                 style="font-size: 1.3rem; cursor: pointer; padding-right: 10px;"></i>
                                                         </button>
-                                        <a href="{{ route('schedule',$s) }}">Appel</a>
+                                                            <a href="{{ route('schedule',$s) }}">Appel</a>
+                                                            <a href="{{ route('schedule',$s) }}"> Presence</a>
+                                                            <a href="{{ route('schedule',$s) }}">Absence</a>
                                                     </span>
                                                 </td>
                                             </tr>
@@ -93,12 +95,12 @@
                         @csrf
                         <div class="mb-3">
                             <label for="teacherName" class="form-label">Jour</label>
-                            <input type="text" class="form-control" id="programDate" name="day" required>
+                            <input type="date" class="form-control" id="programDate" name="day" required>
                             @error('day')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                         </div>
-                        <input type="hidden" name="course" value="{{ $course }}">
+                        <input type="hidden" name="course" value="{{ $course->id }}">
                         <div class="mb-3">
                             <label for="teacherName" class="form-label">Heure de début</label>
                             <input type="time" class="form-control" id="programStartHour" name="start_hour"

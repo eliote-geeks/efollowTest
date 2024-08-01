@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Course;
 use App\Models\Program;
 use Illuminate\Http\Request;
@@ -37,7 +38,7 @@ class ProgramController extends Controller
     {
         try{
             $request->validate([
-                'day' => 'required|in:lundi,mardi,mercredi,jeudi,vendredi,samedi,dimanche',
+                'day' => 'required',
                 'course' => 'required',
                 'start_hour' => 'required',
                 'end_hour' => 'required',
