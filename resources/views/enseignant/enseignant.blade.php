@@ -32,17 +32,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <form action='#' method="post">
+                                            {{-- <form action='#' method="post"> --}}
+                                                @foreach ($teachers as $t)                                                
                                                 <tr>
-                                                    <td>Professeur 1</td>
-                                                    <td>AZERTYU</td>
-                                                    <td>emailprof@gmail.com</td>
+                                                    <td>{{ $t->user->name }}</td>
+                                                    <td>{{ $t->matricular }}</td>
+                                                    <td>{{ $t->user->email }}</td>
                                                     <td class="text-center">
                                                         <span>
-                                                            <button style="border: none; text-decoration: none; background: none;" type="submit" name="editTeacher" data-bs-toggle="modal" data-bs-target="#editTeacherModal">
+                                                            <button style="border: none; text-decoration: none; background: none;" type="submit" name="editTeacher{{ $t->id }}" data-bs-toggle="modal" data-bs-target="#editTeacherModal{{ $t->id }}">
                                                                 <i class="fa fa-edit text-success" style="font-size: 1.3rem; cursor: pointer; padding-right: 10px;"></i>
                                                             </button>
-                                                            <button style="border: none; text-decoration: none; background: none;" type="submit" name="deleteTeacher" data-bs-toggle="modal" data-bs-target="#deleteTeacherModal">
+                                                            <button style="border: none; text-decoration: none; background: none;" type="submit" name="deleteTeacher{{ $t->id }}" data-bs-toggle="modal" data-bs-target="#deleteTeacherModal{{ $t->id }}">
                                                                 <i class="fa fa-trash text-danger" style="font-size: 1.3rem; cursor: pointer; padding-right: 10px;"></i>
                                                             </button>
                                                             <button style="border: none; text-decoration: none; background: none;" type="submit" name="TeacherDetails" data-bs-toggle="modal" data-bs-target="#detailsTeacherModal">
@@ -51,7 +52,89 @@
                                                         </span>
                                                     </td>
                                                 </tr>
-                                            </form>
+
+                                                
+        <!--**********************************
+            edit prof modal start
+        ***********************************-->
+        <div class="modal fade" id="editTeacherModal{{ $t->id }}" tabindex="-1" aria-labelledby="editTeacherModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editTeacherModalLabel">Modifier les informations du professeur</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('enseignant.update',$t) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                        <div class="mb-3">
+                                <label for="teacherName" class="form-label">Nom complet</label>
+                                <input type="text" class="form-control" id="editTeacherName" name="name" placeholder="Entrez le nom complet du professeur" value="{{ $t->name }}" required>
+                                @error('name')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="profEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="editTeacherEmail" name="email" placeholder="Entrez l'email du professeur" value="{{ $t->email }}" required>
+                                @error('email')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="specialityName" class="form-label">Mot de passe</label>
+                                <input type="password" class="form-control" id="editTeacherMatricule" name="password" placeholder="Entrez le mot de passe du professeur" >
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <button type="submit" class="btn btn-primary">Modifier</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            edit prof modal end
+        ***********************************-->
+
+        <!--**********************************
+            delete prof modal start
+        ***********************************-->
+        <div class="modal fade" id="deleteTeacherModal{{ $t->id }}" tabindex="-1" aria-labelledby="deleteTeacherModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteTeacherModalLabel">Confirmer la suppression du compte du professeur</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="#" method="POST">
+                        <div class="modal-body">
+                            <h4 class=" text-danger">Êtes-vous sûr de vouloir supprimer ce compte?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                           <form action="{{ route('enseignant.destroy',$t) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash me-2 text-danger"></i>
+                                Supprimer
+                                </button>
+                           </form>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            delete prof modal end
+        ***********************************-->
+                                                @endforeach
+                                            {{-- </form> --}}
                                         </tbody>
                                     </table>
                                 </div>
@@ -77,22 +160,28 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="#" method="POST">
+                        <form action="{{ route('enseignant.store') }}" method="POST">
+                            @csrf
                             <div class="mb-3">
                                 <label for="teacherName" class="form-label">Nom complet</label>
-                                <input type="text" class="form-control" id="teacherName" name="teacherName" placeholder="Entrez le nom complet du professeur" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="specialityName" class="form-label">Matricule</label>
-                                <input type="text" class="form-control" id="teacherMatricule" name="teacherMatricule" placeholder="Entrez le matricule du professeur" required>
+                                <input type="text" class="form-control" id="teacherName" name="name" placeholder="Entrez le nom complet du professeur" required>
+                                @error('name')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="profEmail" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="teacherEmail" name="teacherEmail" placeholder="Entrez l'email du professeur" required>
+                                <input type="email" class="form-control" id="teacherEmail" name="email" placeholder="Entrez l'email du professeur" required>
+                                @error('email')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="specialityName" class="form-label">Mot de passe</label>
-                                <input type="password" class="form-control" id="teacherMatricule" name="teacherMatricule" placeholder="Entrez le mot de passe du professeur" required>
+                                <input type="password" class="form-control" id="teacherMatricule" name="password" placeholder="Entrez le mot de passe du professeur" required>
+                                @error('password')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
@@ -107,74 +196,5 @@
             Add prof modal end
         ***********************************-->
 
-        <!--**********************************
-            edit prof modal start
-        ***********************************-->
-        <div class="modal fade" id="editTeacherModal" tabindex="-1" aria-labelledby="editTeacherModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editTeacherModalLabel">Modifier les informations du professeur</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="#" method="POST">
-                        <div class="mb-3">
-                                <label for="teacherName" class="form-label">Nom complet</label>
-                                <input type="text" class="form-control" id="editTeacherName" name="editTeacherName" placeholder="Entrez le nom complet du professeur" value="Professeur 1" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="specialityName" class="form-label">Matricule</label>
-                                <input type="text" class="form-control" id="editTeacherMatricule" name="editTeacherMatricule" placeholder="Entrez le matricule du professeur" value="AZERT" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="profEmail" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="editTeacherEmail" name="editTeacherEmail" placeholder="Entrez l'email du professeur" value="emailprof@gmail.com" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="specialityName" class="form-label">Mot de passe</label>
-                                <input type="password" class="form-control" id="editTeacherMatricule" name="editTeacherMatricule" placeholder="Entrez le mot de passe du professeur" required>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                <button type="submit" class="btn btn-primary">Modifier</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--**********************************
-            edit prof modal end
-        ***********************************-->
-
-        <!--**********************************
-            delete prof modal start
-        ***********************************-->
-        <div class="modal fade" id="deleteTeacherModal" tabindex="-1" aria-labelledby="deleteTeacherModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteTeacherModalLabel">Confirmer la suppression du compte du professeur</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="#" method="POST">
-                        <div class="modal-body">
-                            <h4 class=" text-danger">Êtes-vous sûr de vouloir supprimer ce compte?</h4>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                            <button type="submit" class="btn btn-danger">
-                            <i class="fas fa-trash me-2 text-danger"></i>
-                            Supprimer
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!--**********************************
-            delete prof modal end
-        ***********************************-->
 
 </x-layouts>
