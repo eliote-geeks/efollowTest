@@ -109,4 +109,15 @@ class ProgramController extends Controller
             return redirect()->back()->with('message','Oups Erreur innatendue !!');
         }
     }
+
+
+    public function absenceStudent(Program $program)
+    {
+        return view();
+    }
+
+    public function presenceStudent(Program $program)
+    {
+        return view();
+    }
 }

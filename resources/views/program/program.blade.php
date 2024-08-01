@@ -58,9 +58,18 @@
                                                             <i class="fa fa-trash text-danger"
                                                                 style="font-size: 1.3rem; cursor: pointer; padding-right: 10px;"></i>
                                                         </button>
-                                                            <a href="{{ route('schedule',$s) }}">Appel</a>
-                                                            <a href="{{ route('schedule',$s) }}"> Presence</a>
-                                                            <a href="{{ route('schedule',$s) }}">Absence</a>
+                                                        
+                                                        @if (
+                                                            \App\Models\endSchedule::where([
+                                                                'program_id' => $s->id,
+                                                                'status' => 1,
+                                                            ])->count() > 0)
+                                                            <a href="{{ route('presence.student', $s) }}"> Presence</a>
+                                                            <a href="{{ route('absence.student', $s) }}">Absence</a>
+                                                            @else
+                                                            <a href="{{ route('schedule', $s) }}">Appel</a>
+                                                        @endif
+
                                                     </span>
                                                 </td>
                                             </tr>
@@ -97,25 +106,23 @@
                             <label for="teacherName" class="form-label">Jour</label>
                             <input type="date" class="form-control" id="programDate" name="day" required>
                             @error('day')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <input type="hidden" name="course" value="{{ $course->id }}">
                         <div class="mb-3">
                             <label for="teacherName" class="form-label">Heure de début</label>
-                            <input type="time" class="form-control" id="programStartHour" name="start_hour"
-                                required>
-                                @error('start_hour')
+                            <input type="time" class="form-control" id="programStartHour" name="start_hour" required>
+                            @error('start_hour')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="teacherName" class="form-label">Heure de fin</label>
-                            <input type="time" class="form-control" id="programEndHour" name="end_hour"
-                                required>
-                                @error('end_hour')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
+                            <input type="time" class="form-control" id="programEndHour" name="end_hour" required>
+                            @error('end_hour')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
