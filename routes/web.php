@@ -36,8 +36,9 @@ Route::get('carte/ajout/{student}', [SmartCardController::class, 'createStudentC
 Route::post('carte/ajout/{student}', [SmartCardController::class, 'addPostStudentCard'])->name('addPostStudentCard');
 Route::get('carte/search/{student}', [SmartCardController::class, 'searchByStudentCard'])->name('searchByStudentCard');
 route::post('carte/shedule/{student}/{program}',[SmartCardController::class,'scheduleCard'])->name('scheduleCard');
-route::post('carte/etudiant/{student}/{course}',[SmartCardController::class,'addStudentCourseCard'])->name('addStudentCourseCard');
+route::post('carte/etudiant/{course}',[SmartCardController::class,'addStudentCourseCard'])->name('addStudentCourseCard');
 route::get('carte/etudiant/{program}',[SmartCardController::class,'endListCardschedule'])->name('endListCardschedule');
+route::get('carte/register/{course}',[SmartCardController::class,'registerSTudentCourse'])->name('registerSTudentCourse');
 
 
 

@@ -14,6 +14,10 @@ use App\Models\StudentCourse;
 
 class SmartCardController extends Controller
 {
+    public function registerSTudentCourse(Course $course)
+    {
+        return view('card.register-student',compact('course'));
+    }
     public function addPostStudentCard(Request $request, Student $student)
     {
         try {
@@ -145,7 +149,7 @@ class SmartCardController extends Controller
         }
     }
 
-    public function addStudentCourseCard(Request $request, Student $student, Course $course)
+    public function addStudentCourseCard(Request $request, Course $course)
     {
         try {
             $request->validate([

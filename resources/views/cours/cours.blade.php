@@ -52,9 +52,9 @@
                                                             <button style="border: none; text-decoration: none; background: none;" type="submit" name="deleteCourse" data-bs-toggle="modal" data-bs-target="#deleteCourseModal{{ $c->id }}">
                                                                 <i class="fa fa-trash text-danger" style="font-size: 1.3rem; cursor: pointer; padding-right: 10px;"></i>
                                                             </button>
-                                                            <button style="border: none; text-decoration: none; background: none;" type="submit" name="CourseDetails" data-bs-toggle="modal" data-bs-target="#detailsCourseModal">
-                                                                <i class="fa fa-eye" style="font-size: 1.3rem; cursor: pointer; padding-right: 10px; color: gray;"></i>
-                                                            </button>
+                                                            <a name="CourseDetails" href="{{ route('registerSTudentCourse',$c) }}">
+                                                                <i class="fa fa-register" style="font-size: 1.3rem; cursor: pointer; padding-right: 10px; color: gray;"></i>
+                                                            </a>
                                                         </span>
                                                     </td>
                                                 </tr>
