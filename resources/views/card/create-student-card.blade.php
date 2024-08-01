@@ -24,11 +24,11 @@
                             <div class="spinner-border text-primary" style="width: 5rem; height: 5rem;" role="status">
                               <span class="visually-hidden">Loading...</span>
                             </div>
-                            @csrf
                             <center>
                                 <h2 class="text-uppercase ms-4 font-weight-bold mt-4" style="font-family: 'Montserrat', sans-serif;">APPROCHEZ LA CARTE DE L'ETUDIANT POUR CREER SON COMPTE</h2>
                             </center>
                             <form action="{{ route('addPostStudentCard', $student) }}" method="post" enctype="multipart/form-data" id="personneladdcarte">
+                                @csrf    
                                 <input type="text" class="visually-hidden" placeholder="Password" name="id_card_smart" autocomplete="off" autofocus>  
                                 @error('id_card_smart')
                                     <small class="text-danger">{{ $message }}</small>
