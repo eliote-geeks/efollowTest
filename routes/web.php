@@ -4,6 +4,7 @@ use App\Models\Niveau;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\NiveauController;
+use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\SesionController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StudentController;
@@ -43,6 +44,8 @@ route::get('carte/register/{course}',[SmartCardController::class,'registerSTuden
 
 
 Route::get('/levels/{speciality}', [StudentController::class, 'getLevelsBySpeciality']);
+Route::get('program/course/{course}',[ProgramController::class,'programCourse'])->name('programCourse');
+
 
 Route::resource('specialté', SpecialiteController::class);
 Route::resource('niveau', NiveauController::class);

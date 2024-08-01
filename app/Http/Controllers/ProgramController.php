@@ -12,6 +12,11 @@ class ProgramController extends Controller
      */
     public function index()
     {
+ 
+    }
+
+    public function programCourse()
+    {
         $schedules = Program::all()->map(function ($schedule) {
             return [
                 'title' => $schedule->course->name,
@@ -19,6 +24,8 @@ class ProgramController extends Controller
                 'end' => $schedule->day . 'T' . $schedule->end_hour,
             ];
         });
+        // program.program
+        return view('welcome',compact('schedules'));
     }
 
     /**
