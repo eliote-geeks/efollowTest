@@ -40,7 +40,7 @@ route::post('carte/shedule/{program}',[SmartCardController::class,'scheduleCard'
 route::post('carte/etudiant/{course}',[SmartCardController::class,'addStudentCourseCard'])->name('addStudentCourseCard');
 route::get('carte/etudiant/{program}',[SmartCardController::class,'endListCardschedule'])->name('endListCardschedule');
 route::get('carte/register/{course}',[SmartCardController::class,'registerSTudentCourse'])->name('registerSTudentCourse');
-Route::get('schedule/card',[SmartCardController::class])->name('schedule');
+Route::get('schedule/card/{program}',[SmartCardController::class,'schedule'])->name('schedule');
 
 
 Route::get('/levels/{speciality}', [StudentController::class, 'getLevelsBySpeciality']);
