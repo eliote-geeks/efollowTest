@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Sesion;
+use App\Models\Specialite;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -13,6 +16,12 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::all();
+        $teachers = Teacher::all();
+        $sessions = Sesion::all();
+        $specialities = Specialite::all();
+        
+
+        return view('cours.cours',compact('courses','teachers','sessions','specialities'));
     }
 
     /**
@@ -38,6 +47,7 @@ class CourseController extends Controller
                     'name' => 'required',
                 ],
                 [
+                    'name.required' => 'Le champ nom du cours ne peut etre vide',
                     'niveau.required' => 'Le champ niveau ne peut etre vide',
                     'teacher.required' => 'Le champ enseignant ne peut etre vide',
                     'session.required' => 'Le champ session ne peut etre vide',
@@ -49,7 +59,7 @@ class CourseController extends Controller
             $course = new Course();
             $course->niveau_id = $request->niveau;
             $course->teacher_id = $request->teacher;
-            $course->session_id = $request->session;
+            $course->sesion_id = $request->session;
             $course->slug = $request->slug;
             $course->name = $request->name;
             $course->save();

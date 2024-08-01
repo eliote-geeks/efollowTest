@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Models\Niveau;
 use App\Models\Sesion;
 use App\Models\Program;
-use App\Models\Session;
 use App\Models\Teacher;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,19 +13,21 @@ class Course extends Model
 {
     use HasFactory;
 
-    public function niveau()
+
+    public function sesion()
     {
-        return $this->hasMany(Niveau::class);
+        return $this->belongsTo(Sesion::class);
     }
 
-    public function session()
+    public function niveau()
     {
-        return $this->hasMany(Sesion::class);
+        return $this->belongsTo(Niveau::class);
     }
+
 
     public function teacher()
     {
-        return $this->hasMany(Teacher::class);
+        return $this->belongsTo(Teacher::class);
     }
 
     public function program()
