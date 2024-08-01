@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/core@5.10.1/main.min.css' rel='stylesheet' />
@@ -11,7 +11,7 @@
 </head>
 <body>
     <div>
-        <form id="schedule-form" action="" method="POST">
+        <form id="schedule-form" action="{{ route('program.store') }}" method="POST">
             @csrf
             <div>
                 <label for="day">Jour</label>
@@ -47,12 +47,12 @@
 
     <div id='calendar'></div>
 
-     <script>
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: [ 'dayGrid', 'timeGrid', 'interaction' ],
+                plugins: ['dayGrid', 'timeGrid', 'interaction'],
                 headerToolbar: {
                     left: 'prev,next today',
                     center: 'title',
@@ -65,8 +65,5 @@
             calendar.render();
         });
     </script>
-
 </body>
 </html>
-
-

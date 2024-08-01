@@ -103,7 +103,7 @@ class SmartCardController extends Controller
         }
     }
 
-    public function scheduleCard(Request $request, Student $student, Program $program)
+    public function scheduleCard(Request $request, Program $program)
     {
         try {
             $request->validate([
@@ -149,6 +149,10 @@ class SmartCardController extends Controller
         }
     }
 
+    public function schedule(Program $program)
+    {
+        return view('card.shechule',compact('program'));
+    }
     public function addStudentCourseCard(Request $request, Course $course)
     {
         try {

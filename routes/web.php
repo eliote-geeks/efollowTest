@@ -36,11 +36,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 Route::get('carte/ajout/{student}', [SmartCardController::class, 'createStudentCard'])->name('addGetStudentCard');
 Route::post('carte/ajout/{student}', [SmartCardController::class, 'addPostStudentCard'])->name('addPostStudentCard');
 Route::get('carte/search/{student}', [SmartCardController::class, 'searchByStudentCard'])->name('searchByStudentCard');
-route::post('carte/shedule/{student}/{program}',[SmartCardController::class,'scheduleCard'])->name('scheduleCard');
+route::post('carte/shedule/{program}',[SmartCardController::class,'scheduleCard'])->name('scheduleCard');
 route::post('carte/etudiant/{course}',[SmartCardController::class,'addStudentCourseCard'])->name('addStudentCourseCard');
 route::get('carte/etudiant/{program}',[SmartCardController::class,'endListCardschedule'])->name('endListCardschedule');
 route::get('carte/register/{course}',[SmartCardController::class,'registerSTudentCourse'])->name('registerSTudentCourse');
-
+Route::get('schedule/card',[SmartCardController::class])->name('schedule');
 
 
 Route::get('/levels/{speciality}', [StudentController::class, 'getLevelsBySpeciality']);
@@ -53,3 +53,4 @@ Route::resource('etudiant', StudentController::class);
 Route::resource('session',SesionController::class);
 Route::resource('enseignant', TeacherController::class);
 Route::resource('cours',CourseController::class);
+Route::resource('program', ProgramController::class);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Program;
 use Illuminate\Http\Request;
 
@@ -15,17 +16,10 @@ class ProgramController extends Controller
  
     }
 
-    public function programCourse()
+    public function programCourse(Course $course)
     {
-        $schedules = Program::all()->map(function ($schedule) {
-            return [
-                'title' => $schedule->course->name,
-                'start' => $schedule->day . 'T' . $schedule->start_hour,
-                'end' => $schedule->day . 'T' . $schedule->end_hour,
-            ];
-        });
-        // program.program
-        return view('welcome',compact('schedules'));
+        $schedules = Program::where('course_id',$course->id)->get();
+        return view('program.program',compact('schedules','course'));
     }
 
     /**
@@ -43,17 +37,17 @@ class ProgramController extends Controller
     {
         try{
             $request->validate([
-                'day' => 'required',
+                'day' => 'required|in:lundi,mardi,mercredi,jeudi,vendredi,samedi,dimanche',
                 'course' => 'required',
-                'start_Hour' => 'required',
-                'end_Hour' => 'required',
+                'start_hour' => 'required',
+                'end_hour' => 'required',
             ]);
 
             $program = new Program();
             $program->day = $request->day;
-            $program->course = $request->course;
-            $program->start_Hour = $request->start_Hour;
-            $program->end_Hour = $request->end_Hour;
+            $program->course_id = $request->course;
+            $program->start_Hour = $request->start_hour;
+            $program->end_Hour = $request->end_hour;
             $program->save();
             return redirect()->back()->with('message','Nouvel emploi de temps ajouté !!');
 
