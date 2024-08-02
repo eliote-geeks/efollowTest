@@ -8,6 +8,43 @@
         <div class="container-fluid">
             <!-- row -->
 
+
+            <div class="container mt-5">
+                <form action="{{ route('presence.generateReport') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="period">Période :</label>
+                        <select name="period" id="period" class="form-control" required>
+                            <option value="week">Cette Semaine</option>
+                            <option value="month">Ce Mois</option>
+                            <option value="custom">Personnalisée</option>
+                        </select>
+                        @error('period')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div id="custom-period" class="form-group" style="display: none;">
+                        <div class="form-group">
+                            <label for="start_date">Date de début :</label>
+                            <input type="date" name="start_date" id="start_date" class="form-control">
+                            @error('start_date')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="end_date">Date de fin :</label>
+                            <input type="date" name="end_date" id="end_date" class="form-control">
+                            @error('end_date')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Générer le Rapport</button>
+                </form>
+            </div>
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -34,7 +71,9 @@
                                     <tbody>
                                         @foreach ($presences as $p)
                                             <tr>
-                                                <td><a href="{{ route('see',$p->student) }}">{{ $p->student->firstName }}</a></td>
+                                                <td><a
+                                                        href="{{ route('see', $p->student) }}">{{ $p->student->firstName }}</a>
+                                                </td>
                                                 <td>{{ \Carbon\Carbon::parse($p->program->day)->format('d, M Y') }}</td>
                                                 <td>{{ $p->program->course->name }}</td>
                                                 <td>{{ \Carbon\Carbon::parse($p->program->start_Hour)->format('H:i') }}
@@ -56,5 +95,15 @@
     <!--**********************************
             Content body end
         ***********************************-->
+
+    <script>
+        document.getElementById('period').addEventListener('change', function() {
+            if (this.value === 'custom') {
+                document.getElementById('custom-period').style.display = 'block';
+            } else {
+                document.getElementById('custom-period').style.display = 'none';
+            }
+        });
+    </script>
 
 </x-layouts>

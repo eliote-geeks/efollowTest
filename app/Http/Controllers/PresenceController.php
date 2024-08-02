@@ -15,6 +15,12 @@ class PresenceController extends Controller
         //
     }
 
+    public function history()
+    {
+        $presences = Presence::latest()->get();
+        return view('presence.historique',compact('presences'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

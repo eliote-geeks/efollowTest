@@ -22,9 +22,9 @@
                                 <table class="table table-bordered table-striped verticle-middle table-responsive-sm"
                                     id="myTable">
                                     <thead>
-                                        <tr class="text-dark">
-                                            <th scope="col">Jour</th>
+                                        <tr class="text-dark">                                            
                                             <th scope="col">Cours</th>
+                                            <th scope="col">Jour</th>
                                             <th scope="col">Heure de debut</th>
                                             <th scope="col">Heure de fin</th>
                                             <th scope="col">Nom du professeur</th>
@@ -63,9 +63,9 @@
                                 <table class="table table-bordered table-striped verticle-middle table-responsive-sm"
                                     id="myTable">
                                     <thead>
-                                        <tr class="text-dark">
-                                            <th scope="col">Jour</th>
+                                        <tr class="text-dark">                                            
                                             <th scope="col">Cours</th>
+                                            <th scope="col">Jour</th>
                                             <th scope="col">Heure de debut</th>
                                             <th scope="col">Heure de fin</th>
                                         </tr>

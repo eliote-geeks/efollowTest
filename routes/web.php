@@ -4,7 +4,9 @@ use App\Models\Niveau;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\NiveauController;
+use App\Http\Controllers\PresenceController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SesionController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StudentController;
@@ -50,6 +52,8 @@ Route::get('program/absence/{program}',[ProgramController::class,'absenceStudent
 Route::get('etudaint/see/{student}',[StudentController::class,'see'])->name('see');
 Route::get('studentCourseRemove/{studentCourse}',[CourseController::class,'studentCourseRemove'])->name('studentCourseRemove');
 Route::get('cours/{course}',[CourseController::class,'show'])->name('cours.show');
+Route::get('historique',[PresenceController::class,'history'])->name('historique.presence');
+Route::post('report/presence',[ReportController::class,'generateReportPresence'])->name('presence.generateReport');
 
 Route::resource('specialté', SpecialiteController::class);
 Route::resource('niveau', NiveauController::class);

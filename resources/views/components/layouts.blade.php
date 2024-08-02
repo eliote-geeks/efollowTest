@@ -179,7 +179,7 @@
                         </a>
                     </li>
 
-                    <li><a href="absence-list.php" aria-expanded="false">
+                    <li><a href="{{ route('historique.presence') }}" aria-expanded="false">
                         <div class="d-flex align-items-center">
                             <i class="fas fa-history"></i><span class="nav-text"
                                 style="margin-left: 12px;">Historique des Presences</span>
