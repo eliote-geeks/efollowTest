@@ -43,7 +43,7 @@
                     </div>
           
                     <!-- Lien pour fermer la liste des absences -->
-<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#confirmCloseModal">Fermer la liste des absences</a>
+<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#confirmCloseModal">Fermer la liste d'appel</a>
 
 <!-- Modal de confirmation -->
 <div class="modal fade" id="confirmCloseModal" tabindex="-1" role="dialog" aria-labelledby="confirmCloseModalLabel" aria-hidden="true">
@@ -56,7 +56,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                Êtes-vous sûr de vouloir fermer la liste des absences ?
+                Êtes-vous sûr de vouloir fermer la liste d'appel ?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
