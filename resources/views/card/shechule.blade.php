@@ -42,7 +42,30 @@
                       </div>
                     </div>
           
-                    <a href="{{ route('endListCardschedule',$program) }}">Fermer la liste des absences</a>
+                    <!-- Lien pour fermer la liste des absences -->
+<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#confirmCloseModal">Fermer la liste des absences</a>
+
+<!-- Modal de confirmation -->
+<div class="modal fade" id="confirmCloseModal" tabindex="-1" role="dialog" aria-labelledby="confirmCloseModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmCloseModalLabel">Confirmation de Fermeture</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir fermer la liste des absences ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <a href="{{ route('endListCardschedule', $program) }}" class="btn btn-danger">Fermer</a>
+            </div>
+        </div>
+    </div>
+</div>
+
             </div>
         </div>
         <!--**********************************
