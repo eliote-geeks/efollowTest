@@ -171,7 +171,7 @@
                     </li>
                     <!-- <li><a href="index.html"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
                     </li> -->
-                    <li><a href="absence-list.php" aria-expanded="false">
+                    <li><a href="{{ route('historique.absence') }}" aria-expanded="false">
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-history"></i><span class="nav-text"
                                     style="margin-left: 12px;">Historique des absences</span>

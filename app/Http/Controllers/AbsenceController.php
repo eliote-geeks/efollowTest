@@ -15,6 +15,12 @@ class AbsenceController extends Controller
         //
     }
 
+    public function history()
+    {
+        $absences = Absence::latest()->get();
+        return view('absence.historique',compact('absences'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
