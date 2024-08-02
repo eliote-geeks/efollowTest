@@ -48,13 +48,13 @@ Route::get('program/course/{course}',[ProgramController::class,'programCourse'])
 Route::get('program/presence/{program}',[ProgramController::class,'presenceStudent'])->name('presence.student');
 Route::get('program/absence/{program}',[ProgramController::class,'absenceStudent'])->name('absence.student');
 Route::get('etudaint/see/{student}',[StudentController::class,'see'])->name('see');
-
-
+Route::get('studentCourseRemove/{studentCourse}',[CourseController::class,'studentCourseRemove'])->name('studentCourseRemove');
+Route::get('cours/{course}',[CourseController::class,'show'])->name('cours.show');
 
 Route::resource('specialté', SpecialiteController::class);
 Route::resource('niveau', NiveauController::class);
 Route::resource('etudiant', StudentController::class);
 Route::resource('session',SesionController::class);
 Route::resource('enseignant', TeacherController::class);
-Route::resource('cours',CourseController::class);
+Route::resource('cours',CourseController::class)->except(['show']);
 Route::resource('program', ProgramController::class);

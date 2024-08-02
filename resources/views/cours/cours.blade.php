@@ -55,7 +55,9 @@
                                                             <a name="CourseDetails" href="{{ route('registerSTudentCourse',$c) }}"> ({{ \App\Models\StudentCourse::where('course_id',$c->id)->count() }})
                                                                 <i class="fa fa-book" style="font-size: 1.3rem; cursor: pointer; padding-right: 10px; color: gray;"></i>
                                                             </a>
-
+                                                            <a name="CourseDetails" href="{{ route('cours.show',$c) }}">
+                                                                <i class="fa fa-list" style="font-size: 1.3rem; cursor: pointer; padding-right: 10px; color: gray;"></i>
+                                                            </a>
                                                             <a name="CourseDetails" href="{{ route('programCourse',$c) }}">
                                                                 <i class="fa fa-book-reader" style="font-size: 1.3rem; cursor: pointer; padding-right: 10px; color: gray;"></i>
                                                             </a>

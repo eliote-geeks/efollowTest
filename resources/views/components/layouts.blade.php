@@ -32,14 +32,14 @@
         Preloader end
     ********************-->
 
-<!--**********************************
+    <!--**********************************
     End link
 ***********************************-->
 
 
-<div id="main-wrapper">
+    <div id="main-wrapper">
 
-    <!--**********************************
+        <!--**********************************
         Nav header start
     ***********************************-->
         <div class="nav-header">
@@ -55,130 +55,140 @@
                 </div>
             </div>
         </div>
-    <!--**********************************
+        <!--**********************************
         Nav header end
     ***********************************-->
 
 
 
-    <!--**********************************
+        <!--**********************************
         Header start
     ***********************************-->
-    <div class="header">
-        <div class="header-content">
+        <div class="header">
+            <div class="header-content">
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
-                           
+
                         </div>
 
-                    <ul class="navbar-nav header-right">
+                        <ul class="navbar-nav header-right">
 
-                        
-                        <li class="nav-item dropdown header-profile">
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                            <a class="nav-link" href="{{ route('logout') }}" 
-                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <i class="fas fa-sign-out fs-5"></i>
-                            </a>
-                        </li>
-                        
-                    </ul>
-                </div>
-            </nav>
+
+                            <li class="nav-item dropdown header-profile">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
+                                <a class="nav-link" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="fas fa-sign-out fs-5"></i>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </nav>
+            </div>
         </div>
-    </div>
-    <!--**********************************
+        <!--**********************************
         Header end ti-comment-alt
     ***********************************-->
 
-   
+
         <!--**********************************
             Sidebar start
         ***********************************-->
         <div class="quixnav">
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
-            
+
                     <li class="nav-label first active">
-                    <span 
-                        class="nav-text">Gestion des classes</span></a></li>
+                        <span class="nav-text">Gestion des classes</span></a>
+                    </li>
                     <!-- <li><a href="index.html"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
                     </li> -->
 
                     <li><a href="{{ route('specialté.index') }}" aria-expanded="false">
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-book"></i><span 
-                                class="nav-text" style="margin-left: 12px;">Liste des spécialités</span> 
-                        </div>
-                    </a></li>
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-book"></i><span class="nav-text" style="margin-left: 12px;">Liste des
+                                    spécialités</span>
+                            </div>
+                        </a></li>
 
                     <li><a href="{{ route('niveau.index') }}" aria-expanded="false">
-                        <div class="d-flex align-items-center">
-                        <i class="fas fa-star"></i><span 
-                                class="nav-text" style="margin-left: 12px;">Liste des niveaux</span> 
-                        </div>
-                    </a></li>
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-star"></i><span class="nav-text" style="margin-left: 12px;">Liste des
+                                    niveaux</span>
+                            </div>
+                        </a></li>
 
                     <li class="nav-label first active">
-                    <span 
-                        class="nav-text">Gestion des étudiants</span></a></li>
+                        <span class="nav-text">Gestion des étudiants</span></a>
+                    </li>
                     <!-- <li><a href="index.html"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
                     </li> -->
                     <li><a href="{{ route('etudiant.index') }}" aria-expanded="false">
-                        <div class="d-flex align-items-center">
-                        <i class="fas fa-graduation-cap"></i><span 
-                                class="nav-text" style="margin-left: 12px;">Liste des étudiants</span> 
-                        </div>
-                    </a></li>
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-graduation-cap"></i><span class="nav-text"
+                                    style="margin-left: 12px;">Liste des étudiants</span>
+                            </div>
+                        </a></li>
 
                     <li class="nav-label first active">
-                    <span 
-                        class="nav-text">Gestion des professeurs</span></a></li>
+                        <span class="nav-text">Gestion des professeurs</span></a>
+                    </li>
                     <!-- <li><a href="index.html"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
                     </li> -->
                     <li><a href="{{ route('enseignant.index') }}" aria-expanded="false">
-                        <div class="d-flex align-items-center">
-                        <i class="fas fa-chalkboard-teacher"></i><span 
-                                class="nav-text" style="margin-left: 12px;">Liste des professeurs</span> 
-                        </div>
-                    </a></li>
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-chalkboard-teacher"></i><span class="nav-text"
+                                    style="margin-left: 12px;">Liste des professeurs</span>
+                            </div>
+                        </a></li>
 
                     <li class="nav-label first active">
-                    <span 
-                        class="nav-text">Gestion des cours</span></a></li>
+                        <span class="nav-text">Gestion des cours</span></a>
+                    </li>
                     <!-- <li><a href="index.html"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
                     </li> -->
                     <li><a href="{{ route('cours.index') }}" aria-expanded="false">
-                        <div class="d-flex align-items-center">
-                        <i class="fas fa-book-open"></i><span 
-                                class="nav-text" style="margin-left: 12px;">Liste des cours</span> 
-                        </div>
-                    </a></li>  
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-book-open"></i><span class="nav-text"
+                                    style="margin-left: 12px;">Liste des cours</span>
+                            </div>
+                        </a></li>
 
                     <li><a href="{{ route('session.index') }}" aria-expanded="false">
-                        <div class="d-flex align-items-center">
-                        <i class="fas fa-clock"></i><span 
-                                class="nav-text" style="margin-left: 12px;">Liste des sessions</span> 
-                        </div>
-                    </a></li>
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-clock"></i><span class="nav-text" style="margin-left: 12px;">Liste
+                                    des sessions</span>
+                            </div>
+                        </a></li>
 
                     <li class="nav-label first active">
-                    <span 
-                        class="nav-text">Historique</span></a></li>
+                        <span class="nav-text">Historique</span></a>
+                    </li>
                     <!-- <li><a href="index.html"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
                     </li> -->
                     <li><a href="absence-list.php" aria-expanded="false">
-                        <div class="d-flex align-items-center">
-                        <i class="fas fa-history"></i><span 
-                                class="nav-text" style="margin-left: 12px;">Historique des absences</span> 
-                        </div>
-                    </a></li>
-                 
-                        </ul>
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-history"></i><span class="nav-text"
+                                    style="margin-left: 12px;">Historique des absences</span>
+                            </div>
+                        </a>
                     </li>
+
+                    <li><a href="absence-list.php" aria-expanded="false">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-history"></i><span class="nav-text"
+                                style="margin-left: 12px;">Historique des Presences</span>
+                        </div>
+                    </a>
+                </li>
+
+                </ul>
+                </li>
                 </ul>
             </div>
         </div>
@@ -186,45 +196,45 @@
             Sidebar end
         ***********************************-->
 
- 
-            {{ $slot }}
-            
-    
+
+        {{ $slot }}
 
 
-     <!-- Required vendors -->
-    <script src="vendor/global/global.min.js"></script>
-    <script src="js/quixnav-init.js"></script>
-    <script src="js/custom.min.js"></script>
 
 
-    <!-- Vectormap -->
-    <script src="vendor/raphael/raphael.min.js"></script>
-    <script src="vendor/morris/morris.min.js"></script>
+        <!-- Required vendors -->
+        <script src="vendor/global/global.min.js"></script>
+        <script src="js/quixnav-init.js"></script>
+        <script src="js/custom.min.js"></script>
 
 
-    <script src="vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="vendor/chart.js/Chart.bundle.min.js"></script>
+        <!-- Vectormap -->
+        <script src="vendor/raphael/raphael.min.js"></script>
+        <script src="vendor/morris/morris.min.js"></script>
 
-    <script src="vendor/gaugeJS/dist/gauge.min.js"></script>
 
-    <!--  flot-chart js -->
-    <script src="vendor/flot/jquery.flot.js"></script>
-    <script src="vendor/flot/jquery.flot.resize.js"></script>
+        <script src="vendor/circle-progress/circle-progress.min.js"></script>
+        <script src="vendor/chart.js/Chart.bundle.min.js"></script>
 
-    <!-- Owl Carousel -->
-    <script src="vendor/owl-carousel/js/owl.carousel.min.js"></script>
+        <script src="vendor/gaugeJS/dist/gauge.min.js"></script>
 
-    <!-- Counter Up -->
-    <script src="vendor/jqvmap/js/jquery.vmap.min.js"></script>
-    <script src="vendor/jqvmap/js/jquery.vmap.usa.js"></script>
-    <script src="vendor/jquery.counterup/jquery.counterup.min.js"></script>
-    <script src="bootstrap/js/jquery-3.6.0.min.js"></script>
-    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="bootstrap/js/jquery.dataTables.min.js"></script>
-    <script src="bootstrap/js/dataTables.bootstrap5.min.js"></script>
+        <!--  flot-chart js -->
+        <script src="vendor/flot/jquery.flot.js"></script>
+        <script src="vendor/flot/jquery.flot.resize.js"></script>
 
-    <script src="js/dashboard/dashboard-1.js"></script>
+        <!-- Owl Carousel -->
+        <script src="vendor/owl-carousel/js/owl.carousel.min.js"></script>
+
+        <!-- Counter Up -->
+        <script src="vendor/jqvmap/js/jquery.vmap.min.js"></script>
+        <script src="vendor/jqvmap/js/jquery.vmap.usa.js"></script>
+        <script src="vendor/jquery.counterup/jquery.counterup.min.js"></script>
+        <script src="bootstrap/js/jquery-3.6.0.min.js"></script>
+        <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="bootstrap/js/jquery.dataTables.min.js"></script>
+        <script src="bootstrap/js/dataTables.bootstrap5.min.js"></script>
+
+        <script src="js/dashboard/dashboard-1.js"></script>
 </body>
 
 </html>

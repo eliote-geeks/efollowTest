@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Niveau;
 use App\Models\Absence;
 use App\Models\Presence;
+use App\Models\StudentCourse;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -30,5 +31,10 @@ class Student extends Model
     public function absence()
     {
         return $this->hasMany(Absence::class);
+    }
+
+    public function studentCourse()
+    {
+        return $this->hasMany(StudentCourse::class);
     }
 }

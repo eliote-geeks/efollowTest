@@ -6,6 +6,7 @@ use App\Models\Niveau;
 use App\Models\Sesion;
 use App\Models\Program;
 use App\Models\Teacher;
+use App\Models\StudentCourse;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -33,5 +34,10 @@ class Course extends Model
     public function program()
     {
         return $this->hasMany(Program::class);
+    }
+
+    public function studentCourse()
+    {
+        return $this->hasMany(StudentCourse::class);
     }
 }

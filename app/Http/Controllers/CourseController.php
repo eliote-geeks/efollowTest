@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Sesion;
 use App\Models\Specialite;
+use App\Models\StudentCourse;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 
@@ -74,7 +75,8 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        $students = StudentCourse::where('course_id',$course->id)->get();
+        return view('cours.student-course-registered',compact('students','course'));
     }
 
     /**
@@ -130,5 +132,15 @@ class CourseController extends Controller
         }catch(\Exception $e){
             return redirect()->back()->with('message','Oups une erreur innatendue s\'est produite');
         }
+    }
+
+    public function studentCourseRemove(StudentCourse $studentCourse)
+    {
+        try{
+            $studentCourse->delete();
+            return redirect()->back()->with('message','Etudiant retiré de ce cours avec success !!');
+        }catch(\Exception $e){
+            return redirect()->back()->with('message','OUps une erreur innatendue est survenue !!');
+        };
     }
 }
