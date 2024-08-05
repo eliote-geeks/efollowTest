@@ -12,8 +12,23 @@
             <div class="container mt-5">
                 <form action="{{ route('presence.generateReport') }}" method="POST">
                     @csrf
+
                     <div class="form-group">
-                        <label for="period">Période :</label>
+                        <label>Cours :</label>
+                        <select class="form-control"  name="course">
+                            <option value="">Selectionnez un Cours</option>
+                            @foreach (\App\Models\Course::all() as $c)
+                            <option value="{{ $c->id }}">{{ $c->name }}</option>    
+                            @endforeach                            
+                        </select>
+                        @error('course')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="period">Période <span class="text-danger">*</span>:</label>
                         <select name="period" id="period" class="form-control" required>
                             <option value="week">Cette Semaine</option>
                             <option value="month">Ce Mois</option>
@@ -23,6 +38,8 @@
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
+
+
 
                     <div id="custom-period" class="form-group" style="display: none;">
                         <div class="form-group">

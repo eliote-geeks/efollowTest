@@ -17,7 +17,6 @@ class ReportController extends Controller
             // 'start_date' => 'required_if:period,custom|date',
             // 'end_date' => 'required_if:period,custom|date|after_or_equal:start_date',
         ]);
-
         $programs = [];
 
         if ($request->period == 'week') {
@@ -31,17 +30,23 @@ class ReportController extends Controller
             $end_date = Carbon::parse($request->end_date);
         }
 
-        $programs =Program::whereBetween('start_Hour', [$start_date, $end_date])->with('presence')->get();
-
+        if ($request->course) {
+            $programs = Program::whereBetween('day', [$start_date, $end_date])
+                ->where('course_id', $request->course)
+                ->with('presence')
+                ->get();
+        } else {
+            $programs = Program::whereBetween('day', [$start_date, $end_date])
+                ->with('presence')
+                ->get();
+        }
         if ($request->has('start_date') && $request->has('end_date')) {
             $programs->whereBetween('day', [$request->start_date, $request->end_date]);
         }
 
-        $pdf = PDF::loadView('presence.pdf', compact('programs'))
-        ->setPaper('a4', 'Paysage');
+        $pdf = PDF::loadView('presence.pdf', compact('programs'))->setPaper('a4', 'landscape');
         return $pdf->download('presence.programs.pdf');
     }
-
 
     public function generateReportAbsence(Request $request)
     {
@@ -64,14 +69,19 @@ class ReportController extends Controller
             $end_date = Carbon::parse($request->end_date);
         }
 
-        $programs =Program::whereBetween('start_Hour', [$start_date, $end_date])->with('absence')->get();
+        if ($request->course) {
+            $programes = Program::whereBetween('day', [$start_date, $end_date])->where('course_id', $request->course);
+        } else {
+            $programes = Program::whereBetween('day', [$start_date, $end_date]);
+        }
+
+        $programs = $programes->with('presence')->get();
 
         if ($request->has('start_date') && $request->has('end_date')) {
             $programs->whereBetween('day', [$request->start_date, $request->end_date]);
         }
 
-        $pdf = PDF::loadView('absence.pdf', compact('programs'))
-        ->setPaper('a4', 'Paysage');
+        $pdf = PDF::loadView('absence.pdf', compact('programs'))->setPaper('a4', 'landscape');
         return $pdf->download('absence.programs.pdf');
     }
 }
